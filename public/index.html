@@ -11,10 +11,9 @@ html, body {
   margin: 0;
   width: 100%;
   height: 100%;
-  background: #000;
-  color: #fff;
+  background: black;
+  color: white;
   font-family: Arial, sans-serif;
-  overflow: hidden;
 }
 
 .scoreboard {
@@ -28,40 +27,42 @@ html, body {
 
 .teams {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-}
-
-.team {
+  gap: 60px;
   text-align: center;
-  min-width: 220px;
 }
 
 .name {
-  font-size: 34px;
+  font-size: 32px;
   font-weight: bold;
 }
 
 .score {
   font-size: 110px;
   font-weight: bold;
-  line-height: 1;
 }
 
 .time {
   font-size: 70px;
   font-weight: bold;
-  margin-top: 25px;
+  margin-top: 30px;
 }
 </style>
 </head>
 
 <body>
+
 <div class="scoreboard">
 
   <div class="teams">
-
-    <div class="team">
+    <div>
       <div class="name">GAZDE</div>
-      <div
+      <div id="home" class="score">0</div>
+    </div>
+
+    <div>
+      <div class="name">OASPEȚI</div>
+      <div id="away" class="score">0</div>
+    </div>
+  </div>
+
+  <div id="time" class="time">00:00</div>

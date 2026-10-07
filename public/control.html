@@ -1,1 +1,83 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Control Scoreboard</title>
+<script src="/socket.io/socket.io.js"></script>
 
+<style>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #222;
+  color: white;
+  margin: 0;
+  padding: 20px;
+}
+
+button {
+  font-size: 24px;
+  padding: 18px 25px;
+  margin: 8px;
+  border-radius: 10px;
+  border: none;
+}
+
+.score-buttons {
+  margin: 15px 0;
+}
+
+input {
+  font-size: 24px;
+  width: 100px;
+  text-align: center;
+  padding: 8px;
+}
+
+h1 {
+  font-size: 32px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>CONTROL TABELĂ</h1>
+
+<div class="score-buttons">
+  <button onclick="socket.emit('homePlus')">+1 GAZDE</button>
+  <button onclick="socket.emit('awayPlus')">+1 OASPEȚI</button>
+</div>
+
+<div>
+  <button onclick="socket.emit('start')">START</button>
+  <button onclick="socket.emit('stop')">PAUZĂ</button>
+  <button onclick="socket.emit('reset')">RESET</button>
+</div>
+
+<h2>Timp: <span id="time">00:00</span></h2>
+
+<input id="minutes" type="number" min="0" value="30">
+<button onclick="setTime()">SETARE TIMP</button>
+
+<script>
+const socket = io();
+
+function setTime() {
+  const minutes = Number(document.getElementById("minutes").value);
+  socket.emit("setTime", minutes * 60);
+}
+
+socket.on("game", (game) => {
+  const minutes = Math.floor(game.time / 60);
+  const seconds = game.time % 60;
+
+  document.getElementById("time").textContent =
+    String(minutes).padStart(2, "0") + ":" +
+    String(seconds).padStart(2, "0");
+});
+</script>
+
+</body>
+</html>

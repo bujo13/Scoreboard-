@@ -20,7 +20,7 @@ io.on("connection", (socket) => {
 console.log("CLIENT CONECTAT", socket.id);
   socket.on("homePlus", () => {
     game.home++;
-    io.emit("game", game);
+    io.emit("game", game);});
 
 
   socket.on("awayPlus", () => {

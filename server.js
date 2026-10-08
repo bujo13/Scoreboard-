@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require("express"); la 
 const http = require("http");
 const { Server } = require("socket.io");
 
@@ -17,11 +17,11 @@ let game = {
 
 io.on("connection", (socket) => {
   socket.emit("game", game);
-
+console.log("CLIENT CONECTAT", socket.id);
   socket.on("homePlus", () => {
     game.home++;
     io.emit("game", game);
-  });
+
 
   socket.on("awayPlus", () => {
     game.away++;
